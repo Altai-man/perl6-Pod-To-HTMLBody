@@ -1,5 +1,5 @@
 {
-  "auth" : "github:drforr",
+  "auth" : "github:Altai-man",
   "authors" : [
     "Jeffrey Goff <drforr@pobox.com>"
   ],
@@ -18,9 +18,9 @@
     "Pod::To::Tree" : "lib/Pod/To/Tree.pm6"
   },
   "resources" : [ ],
-  "source-url" : "https://github.com/drforr/perl6-Pod-To-HTMLBody.git",
+  "source-url" : "https://github.com/Altai-man/perl6-Pod-To-HTMLBody.git",
   "support" : {
-    "source" : "https://github.com/drforr/perl6-Pod-To-HTMLBody.git"
+    "source" : "https://github.com/Altai-man/perl6-Pod-To-HTMLBody.git"
   },
   "tags" : [
     "Pod6",
@@ -30,5 +30,5 @@
   "test-depends" : [
     "Test"
   ],
-  "version" : "0.0.1"
+  "version" : "1.0.0"
 }
