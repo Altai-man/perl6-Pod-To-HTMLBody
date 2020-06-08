@@ -720,7 +720,7 @@ a
 			'<tr>'
 				'<td>' 'The Shoveller' '</td>'
 				'<td>' 'Eddie Stevens' '</td>'
-				'<td>' 'King Arthur\'s singing shovel' '</td>'
+				'<td>' 'King Arthur&#39;s singing shovel' '</td>'
 			'</tr>'
 			'<tr>'
 				'<td>' 'Blue Raja' '</td>'
@@ -837,7 +837,7 @@ like Pod::To::HTMLBody.render( $=pod[$pod-counter++] ), /
 			'<tr>'
 				'<td>' 'The Shoveller' '</td>'
 				'<td>' 'Eddie Stevens' '</td>'
-				'<td>' "King Arthur's singing shovel" '</td>'
+				'<td>' "King Arthur&#39;s singing shovel" '</td>'
 			'</tr>'
 		'</table>'
 	/, 'hanging table with multiline header';
@@ -869,7 +869,7 @@ like Pod::To::HTMLBody.render( $=pod[$pod-counter++] ), /
 			'<tr>'
 				'<td>' 'The Shoveller' '</td>'
 				'<td>' 'Eddie Stevens' '</td>'
-				'<td>' "King Arthur's singing shovel" '</td>'
+				'<td>' "King Arthur&#39;s singing shovel" '</td>'
 			'</tr>'
 			'<tr>'
 				'<td>' 'Blue Raja' '</td>'
@@ -1071,7 +1071,7 @@ like Pod::To::HTMLBody.render( $=pod[$pod-counter++] ), /
 			'<tr>'
 				'<td>' 'The Shoveller' '</td>'
 				'<td>' 'Eddie Stevens' '</td>'
-				'<td>' "King Arthur's singing shovel" '</td>'
+				'<td>' "King Arthur&#39;s singing shovel" '</td>'
 			'</tr>'
 			'<tr>'
 				'<td>' 'Blue Raja' '</td>'
@@ -1299,10 +1299,7 @@ This ordinary paragraph introduces a code block:
 
 like Pod::To::HTMLBody.render( $=pod[$pod-counter++] ), /
 	'<p>' 'This ordinary paragraph introduces a code block:' '</p>'
-	'<code>' "\$this = 1 * code('block');
-\$which.is_specified(:by<indenting>);
-
-\$which.spans(:newlines);" '</code>'
+	'<code>' "\$this = 1 * code(&#39;block&#39;);<br>\$which.is_specified(:by\&lt;indenting\&gt;);<br><br>\$which.spans(:newlines);" '</code>'
 /, 'indented code';
 
 # more fancy code blocks
@@ -1344,7 +1341,7 @@ Tests for the feed operators
 # XXX Check to see if entities need to be decoded here.
 like Pod::To::HTMLBody.render( $=pod[$pod-counter++] ), /
 	'<p>' 'Tests for the feed operators' '</p>'
-	'<code>' '==> and <==' '</code>'
+	'<code>' '==&gt; and &lt;==' '</code>'
 /, 'entities';
 
 =begin pod
@@ -1362,9 +1359,7 @@ like Pod::To::HTMLBody.render( $=pod[$pod-counter++] ), /
 	'<p>' 'Fun comes' '</p>'
 	'<code>' 'This is code' '</code>'
 	'<code>' 'Ha, what now?' '</code>'
-	'<code>' 'one more block of code
-just to make sure it works
- or better: maybe it\'ll break!' '</code>'
+	'<code>' 'one more block of code<br>just to make sure it works<br> or better: maybe it&#39;ll break!' '</code>'
 /, 'multi-line code block';
 
 =begin pod
@@ -1443,9 +1438,7 @@ like Pod::To::HTMLBody.render( $=pod[$pod-counter++] ), /
 
 like Pod::To::HTMLBody.render( $=pod[$pod-counter++] ), /:s
 	'<code>'
-		'foo foo
-    =begin code
-    =end code'
+		'foo foo<br>    =begin code<br>    =end code<br>'
 	'</code>'
 /, 'embedded pseudo-pod';
 
@@ -1459,8 +1452,8 @@ This isn't a comment
 
 like Pod::To::HTMLBody.render( $=pod[$pod-counter++] ), /:s
 	'<div>'
-		'<!--' 'foo foo' 'bla bla    bla' '-->'
-		'<p>' 'This isn\'t a comment' '</p>'
+		'<!--' 'foo foo<br>' 'bla bla    bla<br>' '-->'
+		'<p>' 'This isn&#39;t a comment' '</p>'
 	'</div>'
 /, 'paragraph comment';
 
@@ -1469,7 +1462,7 @@ This file is deliberately specified in Perl 6 Pod format
 
 like Pod::To::HTMLBody.render( $=pod[$pod-counter++] ), /:s
 	'<!--'
-		'This file is deliberately specified in Perl 6 Pod format'
+		'This file is deliberately specified in Perl 6 Pod format<br>'
 	'-->'
 /, 'S26 counterexample - hanging comment';
 
@@ -1484,10 +1477,10 @@ foo foo
 
 like Pod::To::HTMLBody.render( $=pod[$pod-counter++] ), /:s
 	'<!--'
-		'foo foo'
-		'=begin invalid pod'
-		'=as many invalid pod as we want'
-		'===yay!'
+		'foo foo<br>'
+		'=begin invalid pod<br>'
+		'=as many invalid pod as we want<br>'
+		'===yay!<br>'
 	'-->'
 /, 'delimited comment';
 
@@ -1519,7 +1512,7 @@ As you can see, folk wisdom is often of dubious value.
 
 like Pod::To::HTMLBody.render( $=pod[$pod-counter++] ), /
 	'<div>'
-		'<p>' "Let's consider two common proverbs:" '</p>'
+		'<p>' "Let\&#39;s consider two common proverbs:" '</p>'
 		'<li>'
 			'<i>' 'The rain in Spain falls mainly on the plain.' '</i>'
 			'This is a common myth and an unconscionable slur on the Spanish people, the majority of whom are extremely attractive.'
@@ -1607,7 +1600,7 @@ like Pod::To::HTMLBody.render( $=pod[$pod-counter++] ), /
 			' block'
 		'</p>'
 		'<code>'
-			'$this = pod(\'also\');  # Specifically, a code block'
+			'$this = pod(&#39;also&#39;);  # Specifically, a code block'
 		'</code>'
 	'</div>'
 /, 'mixture';
@@ -1617,7 +1610,7 @@ like Pod::To::HTMLBody.render( $=pod[$pod-counter++] ), /
 # Note that V<> doesn't generate its own POD node.
 like Pod::To::HTMLBody.render( $=pod[$pod-counter++] ), /
 	'<div>'
-		'<p>' 'C<boo> B<bar> asd' '</p>'
+		'<p>' 'C&lt;boo&gt; B&lt;bar&gt; asd' '</p>'
 	'</div>'
 /, 'invisible verbatim';
 
@@ -1628,14 +1621,14 @@ like Pod::To::HTMLBody.render( $=pod[$pod-counter++] ), /
 like Pod::To::HTMLBody.render( $=pod[$pod-counter++] ), /
 	'<div>'
 		'<p>'
-			'<code>' 'infix:<+> ' '</code>'
+			'<code>' 'infix:&lt;+&gt; ' '</code>'
 		'</p>'
 	'</div>'
 /, 'inline <>';
 like Pod::To::HTMLBody.render( $=pod[$pod-counter++] ), /
 	'<div>'
 		'<p>'
-			'<code>' 'infix:<+> ' '</code>'
+			'<code>' 'infix:&lt;+&gt; ' '</code>'
 		'</p>'
 	'</div>'
 /, 'RT #114510 inline <<>>';
@@ -1732,7 +1725,7 @@ like Pod::To::HTMLBody.render( $=pod[$pod-counter++] ), /
 		'<code>'
 			'These words have some '
 			'<b>' 'importance' '</b>'
-			'.' "\n"
+			'.' '<br>'
 		'</code>'
 	'</div>'
 /, 'Adjective';

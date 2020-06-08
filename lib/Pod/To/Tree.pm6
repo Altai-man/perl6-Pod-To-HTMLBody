@@ -225,6 +225,8 @@ class Node::Bold is Node::FormattingCode { has $.type = 'B' }
 
 class Node::Code is Node { }
 
+class Node::Named is Node { }
+
 class Node::Config is Node {
 	has $.type;
 	has $.like;

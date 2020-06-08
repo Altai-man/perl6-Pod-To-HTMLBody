@@ -1,4 +1,5 @@
 use v6;
+use HTML::Escape;
 
 =begin pod
 
@@ -40,11 +41,11 @@ class Pod::To::HTMLBody:ver<0.0.1> {
 				'<p>' unless $node.parent ~~ Node::Item
 			}
 			when Node::Section {
-				qq[<section><h1>{$node.title}</h1>]
+				qq[<section><h1>{escape-html($node.title)}</h1>]
 			}
 			when Node::Reference { '<var>' }
 			when Node::Heading { qq[<h{$node.level}>] }
-			when Node::Text { $node.value }
+			when Node::Text { escape-html($node.value) }
 			when Node::Table { '<table>' }
 			when Node::Table::Header { '<th>' }
 			when Node::Table::Data { '<td>' }
@@ -101,8 +102,7 @@ class Pod::To::HTMLBody:ver<0.0.1> {
 
 	method render( $pod ) {
 		my $tree = Pod::To::Tree.to-tree( $pod );
-#say $tree.visualize;
-		return self.walk( $tree );
+		return self.walk( $tree ).subst("\n", "<br>", :g);
 	}
 }
 
